@@ -12,6 +12,7 @@ const iconMap = {
   customers: UserGroupIcon,
   pending: ClockIcon,
   invoices: InboxIcon,
+  biggestPaidInvoice: BanknotesIcon,
 };
 
 export default async function CardWrapper() {
@@ -20,6 +21,7 @@ export default async function CardWrapper() {
     totalPendingInvoices,
     numberOfInvoices,
     numberOfCustomers,
+    biggestPaidInvoice,
   } = await fetchCardData();
 
   return (
@@ -34,6 +36,7 @@ export default async function CardWrapper() {
         value={numberOfCustomers}
         type="customers"
       />
+      <Card title="Biggest Paid Invoice" value={biggestPaidInvoice} type="biggestPaidInvoice" />
     </>
   );
 }
@@ -45,7 +48,7 @@ export function Card({
 }: {
   title: string;
   value: number | string;
-  type: "invoices" | "customers" | "pending" | "collected";
+  type: "invoices" | "customers" | "pending" | "collected" | "biggestPaidInvoice";
 }) {
   const Icon = iconMap[type];
 
